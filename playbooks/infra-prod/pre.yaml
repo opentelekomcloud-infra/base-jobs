@@ -1,0 +1,45 @@
+- hosts: localhost
+  tasks:
+    - name: Add bridge.o.o to inventory
+      add_host:
+        name: bridge.eco.tsi-dev.otc-service.com
+        ansible_python_interpreter: python3
+        ansible_user: zuul
+        # Without setting ansible_host directly, mirror-workspace-git-repos
+        # gets sad because if delegate_to localhost and with add_host that
+        # ends up with ansible_host being localhost.
+        ansible_host: bridge.eco.tsi-dev.otc-service.com
+        ansible_port: 22
+
+- hosts: localhost
+  tasks:
+    - name: Add bridge.o.o hostkey to known hosts
+      known_hosts:
+        name: bridge.eco.tsi-dev.otc-service.com
+        key: "bridge.eco.tsi-dev.otc-service.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxRzDkWvvVQtsLTAqAwedRWA84/42KKVdFS0QP8lZFsMpgTXUhjipJ7VcFun5gM87tnt0J71rlN+ospBh0/1wfp2jASEskUyGhXAa5xHjnJN7veUyW+AggEosK/OTunvZgf54p1sQg45Sq/uCjc0Ua0fRMOq2o5z/mgpl6rSjLOlWi9wKA/6axnUbs9w4iD5esyBQ+VcISSJOTqhAo/3UG0NwCU+6Ggwwhg0nl5iCMpQfq4A207IbJ72MkJzlQgW3edsRb5POzdZcGxkTYvVdP3kgHP4Bof3MFFZjBUMz6SuRQyNV5poysMtbtlO0SvgAJNhXr6Vn0GA9XhqFP6+HT"
+
+- hosts: bridge.eco.tsi-dev.otc-service.com
+  tasks:
+    - name: "Make sure a manaul maint isn't going on"
+      wait_for:
+        path: /home/zuul/DISABLE-ANSIBLE
+        state: absent
+        sleep: 10
+        timeout: 3600 # Wait for an hour before bailing
+
+    - name: "Correct ownership of repos"
+      command: "chown -R zuul:zuul /home/zuul/src"
+      # E303: Skip linting since it triggers on the "chown" command,
+      # but we prefer the shell above
+      tags:
+        - skip_ansible_lint
+      # Ignore the error if the dir doesn't exist
+      ignore_errors: true
+      # Do this as root, because it needs to chown root-owned files
+      become: true
+
+    # This role executes code on the executor, so this needs to be in
+    # a trusted playbook.
+    - name: Synchronize src repos to workspace directory.
+      include_role:
+        name: prepare-workspace-git
