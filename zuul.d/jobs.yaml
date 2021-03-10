@@ -27,7 +27,7 @@
     parent: null
     abstract: true
     description: |
-      The base job for OpenDev's installation of Zuul.
+      The base job for OpenTelekomCloud's installation of Zuul.
 
       All jobs ultimately inherit from this.  It runs a pre-playbook
       which copies all of the job's prepared git repos on to all of
@@ -53,12 +53,12 @@
     post-run:
       - playbooks/base/post.yaml
       - playbooks/base/post-logs.yaml
-    cleanup-run: playbooks/base/cleanup.yaml
+    # cleanup-run: playbooks/base/cleanup.yaml
     roles:
       - zuul: zuul/zuul-jobs
       - zuul: opentelekomcloud-infra/otc-zuul-jobs
-    timeout: 1800
-    post-timeout: 1800
+    timeout: 3600
+    post-timeout: 3600
     vars:
     nodeset: ubuntu-bionic
     secrets: &log_clouds
