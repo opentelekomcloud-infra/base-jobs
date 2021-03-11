@@ -16,7 +16,7 @@
     - name: Add bridge hostkey to known hosts
       known_hosts:
         name: bridge.eco.tsi-dev.otc-service.com
-        key: "bridge.eco.tsi-dev.otc-service.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDz1V3sQhj7f7g7At4nTJxVYHe/v4/26cNiwjjS8j38cTc62aLjlZgE3Axw5va9S4L+6+SVNZZTlhd2qNa0ND0XO0x39hHcm8cPfzz5JYLvYTYebl3ZtdX37QVvN36ubmaOiyWCL9KLAH/6Tdf414PNa8UOAKSAdO5I407aSPi0t4zaS/Kk9VheUOJe7sPjCE4kwqH8Bt+Je2LPYtUlL+65ukUXd80Gu5tdOXQzLbdPDkdhn7oxqNudhnFW63gjKx0C4RarG/pbFLlEpvrn1yxI4AmCso32OwKRUDsA6RL4ENNMaXf/lvjP/+y6lthX8E0UvcwckR9MifwUKOJTtZ2zJJMen9hxNmjqWGjCvT2/eUvOuLEoRpfNLYQU3UNt6FPp5g/N88AHw9MApdYTBNve7bDFPmejnAO8FZA8y35CspLsT8FMTraV+RH0AoRihNAIqWOxHmaoMt+fOMX1DbBLbGtIo8HeCEEILUSdmDNAVzVpBi3iVJSx6s7vV2NcYHE="
+        key: "bridge.eco.tsi-dev.otc-service.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDyDSScTpfAgr76+NMsCSgYM/Tdpp1O16lqXSLd2pCBKQSHKMzj79QtxFcskG9yLCnajh85vOd1a29+MIGQuujm+dNa7tfiYacOL9U2csMWUgNzR2pYTYjF1ntnLyRNuuZ/mGiaUuXtsSF6TRuVZg1/Rqa8pUIQj/sdzp54EivBPoneTvEum2MwSLTbExnNAhZC/97Qp45GHM1JozVr8Y/03ZGarse2MXrI0P8sygnimBzwhl1pIrGK4HHCOtAns0A498a2R70NuSm1VesUbex3CCCp/p58l5pQR68S+noFW273dPCy4rcE11ijgtSZflknRe2+VVf8QacQ81upCDAZ"
 
 - hosts: bridge.eco.tsi-dev.otc-service.com
   tasks:
