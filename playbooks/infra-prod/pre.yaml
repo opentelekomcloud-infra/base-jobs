@@ -1,6 +1,6 @@
 - hosts: localhost
   tasks:
-    - name: Add bridge.o.o to inventory
+    - name: Add bridge to inventory
       add_host:
         name: bridge.eco.tsi-dev.otc-service.com
         ansible_python_interpreter: python3
@@ -13,7 +13,7 @@
 
 - hosts: localhost
   tasks:
-    - name: Add bridge.o.o hostkey to known hosts
+    - name: Add bridge hostkey to known hosts
       known_hosts:
         name: bridge.eco.tsi-dev.otc-service.com
         key: "bridge.eco.tsi-dev.otc-service.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDz1V3sQhj7f7g7At4nTJxVYHe/v4/26cNiwjjS8j38cTc62aLjlZgE3Axw5va9S4L+6+SVNZZTlhd2qNa0ND0XO0x39hHcm8cPfzz5JYLvYTYebl3ZtdX37QVvN36ubmaOiyWCL9KLAH/6Tdf414PNa8UOAKSAdO5I407aSPi0t4zaS/Kk9VheUOJe7sPjCE4kwqH8Bt+Je2LPYtUlL+65ukUXd80Gu5tdOXQzLbdPDkdhn7oxqNudhnFW63gjKx0C4RarG/pbFLlEpvrn1yxI4AmCso32OwKRUDsA6RL4ENNMaXf/lvjP/+y6lthX8E0UvcwckR9MifwUKOJTtZ2zJJMen9hxNmjqWGjCvT2/eUvOuLEoRpfNLYQU3UNt6FPp5g/N88AHw9MApdYTBNve7bDFPmejnAO8FZA8y35CspLsT8FMTraV+RH0AoRihNAIqWOxHmaoMt+fOMX1DbBLbGtIo8HeCEEILUSdmDNAVzVpBi3iVJSx6s7vV2NcYHE="
