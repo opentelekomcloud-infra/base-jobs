@@ -11,6 +11,13 @@
       - name: fedora-31
         label: fedora-31
 
+
+- nodeset:
+    name: fedora-32
+    nodes:
+      - name: fedora-32
+        label: fedora-32
+        
 - nodeset:
     name: fedora-32-large
     nodes:
