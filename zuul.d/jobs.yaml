@@ -60,6 +60,8 @@
     timeout: 1800
     post-timeout: 1800
     nodeset: ubuntu-bionic
+    extra-vars:
+      zuul_use_fetch_output: true
     secrets: &log_clouds
       - otc_cloud_logs
 
