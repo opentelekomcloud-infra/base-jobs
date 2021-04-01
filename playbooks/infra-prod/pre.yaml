@@ -20,7 +20,7 @@
 
 - hosts: bridge.eco.tsi-dev.otc-service.com
   tasks:
-    - name: "Make sure a manaul maint isn't going on"
+    - name: "Make sure a manual maint isn't going on"
       wait_for:
         path: /home/zuul/DISABLE-ANSIBLE
         state: absent
