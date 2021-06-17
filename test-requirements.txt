@@ -11,7 +11,7 @@ zuul
 # here to pull in ansible anyway; pip doesn't actually have a
 # dependency solver and the uncapped ansible requirement from
 # ansible-lint pull in the latest version.
-ansible>=2.8,<2.9  # <-- keep it as old as possible
+ansible==2.9  # <-- keep it as old as possible
 # We need to pin ansible-lint to before 4.0 which blows up all over the place
 ansible-lint>=4.3.3,<5
 bashate>=0.2
