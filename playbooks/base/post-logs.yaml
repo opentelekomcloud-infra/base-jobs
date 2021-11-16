@@ -3,13 +3,24 @@
     - name: Include Zuul manifest role
       include_role:
         name: generate-zuul-manifest
+
+    - name: Get cloud config from vault
+      no_log: true
+      vault_read:
+        vault_addr: "{{ zuul_vault.vault_addr }}"
+        role_id: "{{ zuul_vault.role_id }}"
+        secret_id: "{{ zuul_vault.secret_id }}"
+        mode: "cloud_config"
+        secret_name: "{{ vault_cloud_secret_name }}"
+      register: vault_data
+
     - name: Include upload logs role
       no_log: true
       include_role:
         name: upload-logs-swift1
       vars:
         zuul_log_path_shard_build: true
-        zuul_log_cloud_config: '{{ otc_cloud_logs }}'
+        zuul_log_cloud_config: '{{ vault_data.secret }}'
         zuul_log_partition: false
         zuul_log_delete_after: 648000
         # Unique log prefix to avoid container name collisions when ceph is
