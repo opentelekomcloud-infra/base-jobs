@@ -43,3 +43,17 @@
     - name: Synchronize src repos to workspace directory.
       include_role:
         name: prepare-workspace-git
+
+    # When running from periodic/hourly we want to explicitly override
+    # to run from the tip of main
+    - name: Should we run from main
+      set_fact:
+        infra_prod_run_from_main: "{{ zuul.pipeline|default('') in ['periodic', 'otc-infra-prod-hourly'] }}"
+
+    - name: Update from main
+      when: infra_prod_run_from_main|bool
+      git:
+        repo: https://github.com/opentelekomcloud-infra/system-config
+        dest: /home/zuul/src/github.com/opentelekomcloud-infra/system-config
+        force: yes
+        version: main
