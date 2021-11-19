@@ -33,20 +33,30 @@ class VaultCloudConfigModule():
         response, info = fetch_url(
             module=self.ansible,
             url=url,
-            method="POST",
+            method=method,
             **kwargs
         )
         status = info['status']
 
         if status >= 400 and status != 404:
             self.fail_json(
-                msg='Vault returned error',
+                msg=f'Failed to fetch {url}',
                 status_code=status
             )
         content = ""
         if response:
             content = response.read()
         return (content, status)
+
+    def _get_secret_data(self, secret_name):
+        response, info = self._fetch(
+            f"{self.vault_addr}/v1/secret/data/{secret_name}",
+            "GET",
+            headers={
+                'X-Vault-Token': self.token
+            }
+        )
+        return json.loads(response)['data']['data']
 
     def get_vault_token(self, role_id, secret_id):
         url = f"{self.vault_addr}/v1/auth/approle/login"
@@ -68,16 +78,6 @@ class VaultCloudConfigModule():
                 error=str(ex)
             )
 
-    def _get_data(self, secret_name):
-        response, info = self._fetch(
-            f"{self.vault_addr}/v1/secret/data/{secret_name}",
-            "GET",
-            headers={
-                'X-Vault-Token': self.token
-            }
-        )
-        return json.loads(response)['data']['data']
-
     def __call__(self):
         self.vault_addr = self.params['vault_addr']
         role_id = self.params['role_id']
@@ -88,11 +88,11 @@ class VaultCloudConfigModule():
         self.token = self.get_vault_token(
             role_id, secret_id
         )
-        cloud_data = self._get_data(cloud_secret_name)
+        cloud_data = self._get_secret_data(cloud_secret_name)
         user_secret_name = cloud_data.pop('user_secret_name', '')
         if user_secret_name:
             # user_secret_name is found in cloud_data. Resolve it's value
-            cloud_data.update(self._get_data(user_secret_name))
+            cloud_data.update(self._get_secret_data(user_secret_name))
 
         try:
             cloud_config = dict(auth=dict())
