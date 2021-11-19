@@ -5,7 +5,7 @@
         name: generate-zuul-manifest
 
     - name: Get cloud config from vault
-      no_log: true
+      # no_log: true
       vault_cloud_config:
         vault_addr: "{{ zuul_base_jobs_vault.vault_addr }}"
         role_id: "{{ zuul_base_jobs_vault.role_id }}"
