@@ -53,7 +53,6 @@
     post-run:
       - playbooks/base/post.yaml
       - playbooks/base/post-logs.yaml
-    # cleanup-run: playbooks/base/cleanup.yaml
     roles:
       - zuul: zuul/zuul-jobs
       - zuul: opentelekomcloud-infra/otc-zuul-jobs
@@ -65,8 +64,7 @@
     extra-vars:
       zuul_use_fetch_output: true
     secrets:
-      - secret: zuul_base_jobs_vault
-        name: zuul_base_jobs_vault
+      - zuul_base_jobs_vault
 
 - job:
     name: otc-infra-prod-base
