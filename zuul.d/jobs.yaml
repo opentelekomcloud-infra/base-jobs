@@ -73,3 +73,22 @@
       This is not for general use.
     abstract: true
     pre-run: playbooks/infra-prod/pre.yaml
+
+- job:
+    name: otc-infra-prod-setup-src
+    description: |
+      A base job for replicating source to OTC's bridge.
+      This is not for general use.
+    abstract: true
+    pre-run:
+      - playbooks/infra-prod/setup-keys.yaml
+      - playbooks/infra-prod/setup-src.yaml
+
+- job:
+    name: otc-infra-prod-setup-keys
+    description: |
+      A base job allowing executors to login to OTC's bridge.
+      This is not for general use.
+    abstract: true
+    pre-run:
+      - playbooks/infra-prod/setup-keys.yaml
