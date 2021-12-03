@@ -1,0 +1,39 @@
+- hosts: bridge.eco.tsi-dev.otc-service.com
+  tasks:
+    - name: "Make sure a manual maint isn't going on"
+      wait_for:
+        path: /home/zuul/DISABLE-ANSIBLE
+        state: absent
+        sleep: 10
+        timeout: 3600 # Wait for an hour before bailing
+
+    - name: "Correct ownership of repos"
+      command: "chown -R zuul:zuul /home/zuul/src"
+      # E303: Skip linting since it triggers on the "chown" command,
+      # but we prefer the shell above
+      tags:
+        - skip_ansible_lint
+      # Ignore the error if the dir doesn't exist
+      ignore_errors: true
+      # Do this as root, because it needs to chown root-owned files
+      become: true
+
+    # This role executes code on the executor, so this needs to be in
+    # a trusted playbook.
+    - name: Synchronize src repos to workspace directory.
+      include_role:
+        name: prepare-workspace-git
+
+    # When running from periodic/hourly we want to explicitly override
+    # to run from the tip of main
+    - name: Should we run from main
+      set_fact:
+        infra_prod_run_from_main: "{{ zuul.pipeline|default('') in ['periodic', 'otc-infra-prod-hourly'] }}"
+
+    - name: Update from main
+      when: infra_prod_run_from_main|bool
+      git:
+        repo: https://github.com/opentelekomcloud-infra/system-config
+        dest: /home/zuul/src/github.com/opentelekomcloud-infra/system-config
+        force: yes
+        version: main
