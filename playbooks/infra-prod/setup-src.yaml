@@ -28,7 +28,7 @@
     # to run from the tip of main
     - name: Should we run from main
       set_fact:
-        infra_prod_run_from_main: "{{ zuul.pipeline|default('') in ['periodic', 'otc-infra-prod-hourly'] }}"
+        infra_prod_run_from_main: "{{ zuul.pipeline|default('') in ['periodic', 'periodic-hourly'] }}"
 
     - name: Update from main
       when: infra_prod_run_from_main|bool
