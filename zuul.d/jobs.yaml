@@ -60,11 +60,9 @@
     post-timeout: 1800
     nodeset: centos-8
     vars:
-      base_job_vault_cloud_secret_name: "clouds/otcci_logs"
+      vault_cloud_secret_path: "clouds/otcci_logs"
     extra-vars:
       zuul_use_fetch_output: true
-    secrets:
-      - zuul_base_jobs_vault
 
 - job:
     name: otc-infra-prod-base
