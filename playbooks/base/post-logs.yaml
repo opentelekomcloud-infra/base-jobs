@@ -7,11 +7,11 @@
     - name: Get cloud config from vault
       no_log: true
       vault_cloud_config:
-        vault_addr: "{{ zuul_base_jobs_vault.vault_addr }}"
-        role_id: "{{ zuul_base_jobs_vault.role_id }}"
-        secret_id: "{{ zuul_base_jobs_vault.secret_id }}"
-        cloud_secret_name: "{{ base_job_vault_cloud_secret_name }}"
-      register: vault_data
+        vault_addr: "{{ zuul_vault_addr }}"
+        vault_token: "{{ lookup('file', zuul_base_vault_token_path) }}"
+        cloud_secret_path: "{{ vault_cloud_secret_path }}"
+        mode: "token"
+      register: cloud_config
 
     - name: Include upload logs role
       no_log: true
@@ -19,7 +19,7 @@
         name: upload-logs-swift1
       vars:
         zuul_log_path_shard_build: true
-        zuul_log_cloud_config: '{{ vault_data.secret }}'
+        zuul_log_cloud_config: '{{ cloud_config.config }}'
         zuul_log_partition: false
         zuul_log_delete_after: 648000
         # Unique log prefix to avoid container name collisions when ceph is
