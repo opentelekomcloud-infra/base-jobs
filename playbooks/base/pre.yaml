@@ -30,3 +30,20 @@
     - import_role:
         name: ensure-output-dirs
       when: ansible_user_dir is defined
+
+# If job has zuul_vault variable with role_name use it to generate wrapped
+# secret-id and leave it at well-known location. The job is then responsible to
+# take it and use. Secret is wrapped with ttl set to job timeout
+- hosts: localhost
+  roles:
+    - role: create-vault-approle-secret
+      vault_addr: "{{ zuul_vault_addr }}"
+      vault_token: "{{ lookup('file', zuul_base_vault_token_path) }}"
+      vault_secret_dest: "{{ zuul.executor.work_root }}/.approle-secret"
+      vault_role_name: "{{ zuul_vault.vault_role_name }}"
+      when:
+        - "zuul.post_review | bool"
+        - "zuul_vault_addr is defined"
+        - "zuul_base_vault_token_path is defined"
+        - "zuul_vault is defined"
+        - "zuul_vault.vault_role_name is defined"
