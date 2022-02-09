@@ -46,4 +46,4 @@
         - "zuul_vault_addr is defined"
         - "zuul_base_vault_token_path is defined"
         - "zuul_vault is defined"
-        - "zuul_vault.role_name is defined"
+        - "zuul_vault.vault_role_name is defined"
