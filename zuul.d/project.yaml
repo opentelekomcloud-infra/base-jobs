@@ -3,9 +3,10 @@
     default-branch: main
     check:
       jobs:
-        - otc-tox-linters:
-            required-projects: zuul/zuul-jobs
+        - otc-tox-linters: &otc-tox-linters-vars
+            required-projects:
+              - zuul/zuul-jobs
+              - opentelekomcloud-infra/otc-zuul-jobs
     gate:
       jobs:
-        - otc-tox-linters:
-            required-projects: zuul/zuul-jobs
+        - otc-tox-linters: *otc-tox-linters-vars
