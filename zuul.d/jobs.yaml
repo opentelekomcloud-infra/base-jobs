@@ -58,7 +58,7 @@
       - zuul: opentelekomcloud-infra/otc-zuul-jobs
     timeout: 1800
     post-timeout: 1800
-    nodeset: ubuntu-focal
+    nodeset: pod-fedora-35
     vars:
       vault_cloud_secret_path: "clouds/otcci_logs"
     extra-vars:
