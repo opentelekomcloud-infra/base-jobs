@@ -1,23 +1,10 @@
 # Shared nodesets for all tenants
 - nodeset:
-    name: fedora-30
-    nodes:
-      - name: fedora-30
-        label: fedora-30
-
-- nodeset:
-    name: fedora-31
-    nodes:
-      - name: fedora-31
-        label: fedora-31
-
-
-- nodeset:
     name: fedora-32
     nodes:
       - name: fedora-32
         label: fedora-32
-        
+
 - nodeset:
     name: fedora-32-large
     nodes:
@@ -53,3 +40,9 @@
     nodes:
       - name: fedora-pod
         label: pod-fedora-latest
+
+- nodeset:
+    name: pod-fedora-35
+    nodes:
+      - name: fedora-pod
+        label: pod-fedora-35
