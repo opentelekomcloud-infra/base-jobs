@@ -13,11 +13,6 @@
   delegate_to: localhost
 
 - name: Copy src repos to the pod
-  command: >
-    oc --context "{{ zj_pod.1.context }}"
-       --namespace "{{ zj_pod.1.namespace }}"
-        cp
-          {{ zuul.executor.work_root }}/archive.tgz
-          {{ zj_pod.1.pod }}:src/archive.tgz
-  # no_log: true
-  delegate_to: localhost
+  copy: >
+    src: "{{ zuul.executor.work_root }}/archive.tgz"
+    dest: "src/archive.tgz"
