@@ -13,6 +13,6 @@
   delegate_to: localhost
 
 - name: Copy src repos to the pod
-  copy: >
+  copy:
     src: "{{ zuul.executor.work_root }}/archive.tgz"
     dest: "src/archive.tgz"
