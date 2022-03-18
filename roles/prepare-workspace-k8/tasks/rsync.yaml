@@ -16,8 +16,8 @@
   command: >
     oc --context "{{ zj_pod.1.context }}"
        --namespace "{{ zj_pod.1.namespace }}"
-        rsync -q --progress=false
+        cp
           {{ zuul.executor.work_root }}/archive.tgz
-          {{ zj_pod.1.pod }}:src/
+          {{ zj_pod.1.pod }}:src/archive.tgz
   # no_log: true
   delegate_to: localhost
