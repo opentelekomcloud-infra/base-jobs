@@ -21,9 +21,9 @@
     - block:
         # A Pod way
         - include_role:
-            name: prepare-workspace-k8
-        - include_role:
-            name: prepare-workspace-openshift
+            name: mirror-workspace-git-repos
+        # - include_role:
+        #   name: prepare-workspace-openshift
         - include_role:
             name: remove-zuul-sshkey
       run_once: true
