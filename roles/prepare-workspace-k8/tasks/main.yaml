@@ -1,0 +1,6 @@
+---
+- include_tasks: rsync.yaml
+  when: zj_pod.1.pod is defined
+  loop: "{{ openshift_pods.items()|list }}"
+  loop_control:
+    loop_var: zj_pod
