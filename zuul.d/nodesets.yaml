@@ -36,6 +36,12 @@
         label: ubuntu-focal
 
 - nodeset:
+    name: ubuntu-jammy
+    nodes:
+      - name: ubuntu-jammy
+        label: ubuntu-jammy
+
+- nodeset:
     name: fedora-pod
     nodes:
       - name: fedora-pod
