@@ -1,21 +1,9 @@
 # Shared nodesets for all tenants
 - nodeset:
-    name: fedora-32
+    name: centos-9-stream
     nodes:
-      - name: fedora-32
-        label: fedora-32
-
-- nodeset:
-    name: fedora-32-large
-    nodes:
-      - name: fedora-32-large
-        label: fedora-32-large
-
-- nodeset:
-    name: centos-8
-    nodes:
-      - name: centos-8
-        label: centos-8
+      - name: centos-9-stream
+        label: centos-9-stream
 
 - nodeset:
     name: debian-buster
@@ -24,10 +12,10 @@
         label: debian-buster
 
 - nodeset:
-    name: ubuntu-bionic
+    name: ubuntu-bullseye
     nodes:
-      - name: ubuntu-bionic
-        label: ubuntu-bionic
+      - name: ubuntu-bullseye
+        label: ubuntu-bullseye
 
 - nodeset:
     name: ubuntu-focal
@@ -41,14 +29,36 @@
       - name: ubuntu-jammy
         label: ubuntu-jammy
 
+# Nodeset that is just any VM. Use it when you only need "VM" and not K8 pod
 - nodeset:
-    name: fedora-pod
+    name: vm
+    nodes:
+      - name: ubuntu-jammy
+        label: ubuntu-jammy
+
+### K8 pods
+- nodeset:
+    name: pod-fedora-latest
     nodes:
       - name: fedora-pod
-        label: pod-fedora-latest
-
+        label: pod-fedora-35
+        
+# Older F pod version (for proper python 3.9)
+- nodeset:
+    name: pod-fedora-33
+    nodes:
+      - name: fedora-pod
+        label: pod-fedora-33
+        
 - nodeset:
     name: pod-fedora-35
     nodes:
       - name: fedora-pod
         label: pod-fedora-35
+
+# Deprecated
+- nodeset:
+    name: fedora-pod
+    nodes:
+      - name: fedora-pod
+        label: pod-fedora-latest
