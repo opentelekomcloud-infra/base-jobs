@@ -41,7 +41,7 @@
     name: pod-fedora-latest
     nodes:
       - name: fedora-pod
-        label: pod-fedora-35
+        label: pod-fedora-36
 
 # Older F pod version (for proper python 3.9)
 - nodeset:
