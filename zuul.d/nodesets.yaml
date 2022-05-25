@@ -12,10 +12,10 @@
         label: debian-buster
 
 - nodeset:
-    name: ubuntu-bullseye
+    name: debian-bullseye
     nodes:
-      - name: ubuntu-bullseye
-        label: ubuntu-bullseye
+      - name: debian-bullseye
+        label: debian-bullseye
 
 - nodeset:
     name: ubuntu-focal
