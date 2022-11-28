@@ -17,7 +17,7 @@
         # hostname more easily.
         groups:
           - prod_bastion
-          
+
 - hosts: localhost
   tasks:
     - name: Add bridge hostkey to known hosts

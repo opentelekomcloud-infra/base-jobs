@@ -1,11 +1,11 @@
-- hosts: bridge.eco.tsi-dev.otc-service.com
+- hosts: prod_bastion[0]
   tasks:
     - name: "Make sure a manual maint isn't going on"
       wait_for:
         path: /home/zuul/DISABLE-ANSIBLE
         state: absent
         sleep: 10
-        timeout: 3600 # Wait for an hour before bailing
+        timeout: 3600  # Wait for an hour before bailing
 
     - name: "Correct ownership of repos"
       command: "chown -R zuul:zuul /home/zuul/src"
@@ -35,5 +35,5 @@
       git:
         repo: https://github.com/opentelekomcloud-infra/system-config
         dest: /home/zuul/src/github.com/opentelekomcloud-infra/system-config
-        force: yes
+        force: true
         version: main
