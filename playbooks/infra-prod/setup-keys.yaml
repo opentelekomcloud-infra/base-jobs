@@ -10,6 +10,13 @@
         # ends up with ansible_host being localhost.
         ansible_host: bridge.eco.tsi-dev.otc-service.com
         ansible_port: 22
+        # Port 19885 is firewalled
+        zuul_console_disabled: true
+        # Playbooks are written to refer to "prod_bastion[0]" rather
+        # than the hostname directly, so we can swap the bridge
+        # hostname more easily.
+        groups:
+          - prod_bastion
 
 - hosts: localhost
   tasks:
