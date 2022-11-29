@@ -2,7 +2,7 @@
   tasks:
     - name: Add bridge to inventory
       add_host:
-        name: bridge.eco.tsi-dev.otc-service.com
+        name: bridge01.eco.tsi-dev.otc-service.com
         ansible_python_interpreter: python3
         ansible_user: zuul
         # Without setting ansible_host directly, mirror-workspace-git-repos
@@ -22,10 +22,10 @@
   tasks:
     - name: Add bridge hostkey to known hosts
       known_hosts:
-        name: bridge.eco.tsi-dev.otc-service.com
+        name: bridge01.eco.tsi-dev.otc-service.com
         key: "{{ zj_item }}"
       loop:
-        - "bridge.eco.tsi-dev.otc-service.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCihP3c2JSZG6aFFVruAh3TXlygaoVfon3aUwmpmBVwLbmlpHmuIMfG3dpdFfuEVjwRB1FNp3w510gbDZl+K/E/6trnxkZ7iNkVCL1VZoFrpFQU065QaP3uIrwGWdNeatTrI14YlM4CFIyrdsUithy28RaoKDBFOV4DTLuNZvGvogc7fR4nkTDitzeyEkGugD7v9ZNQiW7tyPiUv1nP911vTSA+R1cJkXlXx1FAxC6y1qXJuH4nKoCmPrYBGanljiUvGHt4YLCF0evYnMipuO0uSMvZG1qGjP1GtSOac1BhKnjTUNaXIYPr8WFB7N57VLDHgfa5s/zLS5P6BdC7FogPuFs9+6k9n4uko9ugYx4cXKObYzbrvvWMwEG5dIphde+Tv9uwpY66cKDpaFYapKN3FpGE3Q9wi43JSjXeySSJJIgafIskTpkmBwgEAM8L0NOqIAAjW8Q+gdxMneD3C5QlAXsb5dLPPuVylVObg5VDi4+u278ndko+DfCbGDw/rYU="
-        - "bridge.eco.tsi-dev.otc-service.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBF5fsmQImQIzni107n2sNhWIa7M0a2SlvxdMvegy67gaQGIh5lI30/hQ0Nyz1N3MbC/h5VetJm+hzJaYuo3Y3yQ="
+        - "bridge01.eco.tsi-dev.otc-service.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCihP3c2JSZG6aFFVruAh3TXlygaoVfon3aUwmpmBVwLbmlpHmuIMfG3dpdFfuEVjwRB1FNp3w510gbDZl+K/E/6trnxkZ7iNkVCL1VZoFrpFQU065QaP3uIrwGWdNeatTrI14YlM4CFIyrdsUithy28RaoKDBFOV4DTLuNZvGvogc7fR4nkTDitzeyEkGugD7v9ZNQiW7tyPiUv1nP911vTSA+R1cJkXlXx1FAxC6y1qXJuH4nKoCmPrYBGanljiUvGHt4YLCF0evYnMipuO0uSMvZG1qGjP1GtSOac1BhKnjTUNaXIYPr8WFB7N57VLDHgfa5s/zLS5P6BdC7FogPuFs9+6k9n4uko9ugYx4cXKObYzbrvvWMwEG5dIphde+Tv9uwpY66cKDpaFYapKN3FpGE3Q9wi43JSjXeySSJJIgafIskTpkmBwgEAM8L0NOqIAAjW8Q+gdxMneD3C5QlAXsb5dLPPuVylVObg5VDi4+u278ndko+DfCbGDw/rYU="
+        - "bridge01.eco.tsi-dev.otc-service.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBF5fsmQImQIzni107n2sNhWIa7M0a2SlvxdMvegy67gaQGIh5lI30/hQ0Nyz1N3MbC/h5VetJm+hzJaYuo3Y3yQ="
       loop_control:
         loop_var: zj_item
