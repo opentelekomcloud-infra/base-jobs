@@ -8,7 +8,7 @@
         # Without setting ansible_host directly, mirror-workspace-git-repos
         # gets sad because if delegate_to localhost and with add_host that
         # ends up with ansible_host being localhost.
-        ansible_host: bridge.eco.tsi-dev.otc-service.com
+        ansible_host: bridge01.eco.tsi-dev.otc-service.com
         ansible_port: 22
         # Port 19885 is firewalled
         zuul_console_disabled: true
