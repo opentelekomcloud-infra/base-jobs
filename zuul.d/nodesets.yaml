@@ -1,17 +1,5 @@
 # Shared nodesets for all tenants
 - nodeset:
-    name: centos-9-stream
-    nodes:
-      - name: centos-9-stream
-        label: centos-9-stream
-
-- nodeset:
-    name: debian-buster
-    nodes:
-      - name: debian-buster
-        label: debian-buster
-
-- nodeset:
     name: debian-bullseye
     nodes:
       - name: debian-bullseye
