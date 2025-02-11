@@ -461,7 +461,7 @@ class AdminRequest(object):
     def __init__(self, *arguments):
         self.wait_event = threading.Event()
         self.arguments = arguments
-        if type(self) == AdminRequest:
+        if isinstance(self, AdminRequest):
             raise NotImplementedError("AdminRequest must be subclassed")
 
     def __repr__(self):
