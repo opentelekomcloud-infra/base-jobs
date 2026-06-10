@@ -21,6 +21,7 @@
 - hosts: localhost
   tasks:
     - name: Add bridge hostkey to known hosts
+      no_log: true
       known_hosts:
         name: bridge01.eco.tsi-dev.otc-service.com
         key: "{{ zj_item }}"
